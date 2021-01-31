@@ -1,3 +1,5 @@
+Laravel Verssion 8
+
 1. git clone https://github.com/bhavinlogicrays/laravel-demo.git
 
 2. import laravel_db.sql ( Available into project's root folder )

@@ -1,6 +1,8 @@
-1. git clone 
+1. git clone https://github.com/bhavinlogicrays/laravel-demo.git
 
 2. import laravel_db.sql ( Available into project's root folder )
+
+3. Change your database settings into .env
 
 3. php artisan serve
 

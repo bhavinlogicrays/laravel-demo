@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2.1
--- http://www.phpmyadmin.net
+-- version 4.6.6deb5ubuntu0.5
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Jan 31, 2021 at 11:19 PM
--- Server version: 5.7.26-0ubuntu0.16.04.1
--- PHP Version: 7.3.12-1+ubuntu16.04.1+deb.sury.org+1
+-- Host: localhost:3306
+-- Generation Time: Feb 01, 2021 at 05:01 PM
+-- Server version: 5.7.32-0ubuntu0.18.04.1
+-- PHP Version: 7.2.24-0ubuntu0.18.04.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `laravel_db`
+-- Database: `laravel_demo`
 --
 
 -- --------------------------------------------------------
@@ -39,8 +39,8 @@ CREATE TABLE `companies` (
 --
 
 INSERT INTO `companies` (`id`, `company_name`, `country_id`, `created_at`, `updated_at`) VALUES
-(1, 'ABC', 1, '2021-01-30 18:30:00', '2021-01-30 18:30:00'),
-(2, 'XYZ', 2, '2021-01-30 18:30:00', '2021-01-30 18:30:00');
+(1, 'Facebook', 2, NULL, NULL),
+(2, 'Google', 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -49,9 +49,9 @@ INSERT INTO `companies` (`id`, `company_name`, `country_id`, `created_at`, `upda
 --
 
 CREATE TABLE `company_users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `users_id` bigint(20) UNSIGNED NOT NULL,
-  `company_id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
+  `users_id` int(10) UNSIGNED NOT NULL,
+  `company_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -61,8 +61,11 @@ CREATE TABLE `company_users` (
 --
 
 INSERT INTO `company_users` (`id`, `users_id`, `company_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, '2021-01-20 18:30:00', '2021-01-21 18:30:00'),
-(2, 2, 2, '2021-01-28 18:30:00', '2021-01-28 18:30:00');
+(1, 1, 1, NULL, NULL),
+(2, 1, 2, NULL, NULL),
+(3, 3, 1, NULL, NULL),
+(4, 3, 2, NULL, NULL),
+(5, 4, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -82,8 +85,8 @@ CREATE TABLE `countries` (
 --
 
 INSERT INTO `countries` (`id`, `country_name`, `created_at`, `updated_at`) VALUES
-(1, 'India', '2021-01-30 18:30:00', '2021-01-30 18:30:00'),
-(2, 'USA', '2021-01-30 18:30:00', '2021-01-30 18:30:00');
+(1, 'India', NULL, NULL),
+(2, 'USA', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -92,7 +95,7 @@ INSERT INTO `countries` (`id`, `country_name`, `created_at`, `updated_at`) VALUE
 --
 
 CREATE TABLE `files` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `size` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -105,7 +108,7 @@ CREATE TABLE `files` (
 --
 
 INSERT INTO `files` (`id`, `name`, `path`, `size`, `created_at`, `updated_at`) VALUES
-(5, 'proposal.pdf', '/public/file/proposal.pdf', '197099', '2021-01-31 12:09:10', '2021-01-31 12:09:10');
+(1, 'proposal final.pdf', '/public/files/proposal final.pdf', '4434', '2021-02-01 05:58:49', '2021-02-01 05:58:49');
 
 -- --------------------------------------------------------
 
@@ -124,12 +127,11 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2021_01_31_063356_create_users_table', 1),
-(2, '2021_01_31_063440_create_companies_table', 1),
-(3, '2021_01_31_063529_create_countries_table', 1),
-(6, '2021_01_31_074937_create_company_users_table', 2),
-(7, '2021_01_31_120613_create_files_table', 3),
-(8, '2021_01_31_140311_create_files_table', 4);
+(18, '2021_01_31_063356_create_users_table', 1),
+(19, '2021_01_31_063440_create_companies_table', 1),
+(20, '2021_01_31_063529_create_countries_table', 1),
+(21, '2021_01_31_074937_create_company_users_table', 1),
+(22, '2021_01_31_140311_create_files_table', 1);
 
 -- --------------------------------------------------------
 
@@ -149,10 +151,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user_name`, `created_at`, `updated_at`) VALUES
-(1, 'Bhavin', '2021-01-30 18:30:00', '2021-01-30 18:30:00'),
-(2, 'Neeraj', '2020-12-31 18:30:00', '2020-12-31 18:30:00'),
-(3, 'Bhavin2', '2021-01-30 18:30:00', '2021-01-30 18:30:00'),
-(4, 'Neeraj2', '2021-01-30 18:30:00', '2021-01-30 18:30:00');
+(1, 'John', NULL, NULL),
+(2, 'Derra', NULL, NULL),
+(3, 'Detga', NULL, NULL),
+(4, 'Errie', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -168,7 +170,9 @@ ALTER TABLE `companies`
 -- Indexes for table `company_users`
 --
 ALTER TABLE `company_users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `company_users_users_id_foreign` (`users_id`),
+  ADD KEY `company_users_company_id_foreign` (`company_id`);
 
 --
 -- Indexes for table `countries`
@@ -207,7 +211,7 @@ ALTER TABLE `companies`
 -- AUTO_INCREMENT for table `company_users`
 --
 ALTER TABLE `company_users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `countries`
 --
@@ -217,17 +221,28 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `company_users`
+--
+ALTER TABLE `company_users`
+  ADD CONSTRAINT `company_users_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`),
+  ADD CONSTRAINT `company_users_users_id_foreign` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -17,10 +17,8 @@ class UserController extends Controller
     	$user=Users::with('Company')->whereHas('company.country', function($q){
 		    $q->where('country_name','=', 'USA');
 		})->get();
-		
-        echo '<pre>';
-        print_r($user);
-        exit;
+		// dd($user);
+         return json_encode($user);
     }
 
     /**
@@ -31,9 +29,7 @@ class UserController extends Controller
      */ 
     public function companylist(){
     	$company=Company::with('user')->get();
-		echo '<pre>';
-        print_r($company);
-        exit;
+        return json_encode($company);
     }
 
 }

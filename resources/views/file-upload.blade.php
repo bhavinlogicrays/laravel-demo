@@ -14,6 +14,10 @@
 <div class="container mt-4">
  
   <h2 class="text-center">File Upload</h2>
+
+  @if(Session::has('status'))
+  <p class="alert">{{ Session::get('status') }}</p>
+  @endif
  
       <form method="POST" enctype="multipart/form-data" id="upload-file" action="{{ url('store') }}" >
 
